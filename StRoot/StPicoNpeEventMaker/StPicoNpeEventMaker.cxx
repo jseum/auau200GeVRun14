@@ -84,8 +84,8 @@ Int_t StPicoNpeEventMaker::Make()
     }
 
     mPicoEvent = picoDst->event();
-    float tpcVz = picoEvent->primaryVertex().z();
-    float vpdVz = picoEvent->vzVpd();
+    float tpcVz = mPicoEvent->primaryVertex().z();
+    float vpdVz = mPicoEvent->vzVpd();
     float vzVpdVz = fabs(tpcVz-vpdVz);
 
     mPicoNpeEvent->addPicoEvent(*mPicoEvent);

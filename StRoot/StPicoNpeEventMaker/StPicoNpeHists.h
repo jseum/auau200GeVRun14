@@ -31,7 +31,9 @@ class StPicoNpeHists: public TObject
   StPicoNpeHists(TString fileBaseName);
   virtual ~StPicoNpeHists();
   void addEvent(StPicoEvent const &, StPicoNpeEvent const &,unsigned int const nHftTracks);
-  void addEventQa(StPicoEvent const*, int type);
+  void addEventCutQa(StPicoEvent const*, int type);
+  void fill1dHist(int type, float value);
+  void fill2dHist(int type, float xValue, float yValue);
   void addElectronPair(StElectronPair const*, float electronPt, bool fillMass);
   void closeFile();
 

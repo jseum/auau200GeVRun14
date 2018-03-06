@@ -47,9 +47,9 @@ mh2InvariantMassVsPt(NULL)
     mh1QaEventCutDffVz_raw = new TH1F("mh1QaEventCutDffVz_raw", ";TPC_{V_{z}}-VPD_{V_{z}};", 100, -50, 50);
     mh1QaEventCutDffVz_raw = new TH1F("mh1QaEventCutDffVz_raw", ";TPC_{V_{z}}-VPD_{V_{z}};", 100, -50, 50);
 
-    mh2QaEventCutTpcVzVsVpdVz_raw = TH2F("mh2QaEventCutTpcVzVsVpdVz_raw", ";TPC_{V_{z}};VPD_{V{_z}}", 100, -50, 50, 100, -50, 50);
-    mh2QaEventCutTpcVzVsVpdVz_cut = TH2F("mh2QaEventCutTpcVzVsVpdVz_cut", ";TPC_{V_{z}};VPD_{V{_z}}", 100, -50, 50, 100, -50, 50);
-    mh2QaEventCutTpcVzVsVpdVz_fin = TH2F("mh2QaEventCutTpcVzVsVpdVz_fin", ";TPC_{V_{z}};VPD_{V{_z}}", 100, -50, 50, 100, -50, 50);
+    mh2QaEventCutTpcVzVsVpdVz_raw = new TH2F("mh2QaEventCutTpcVzVsVpdVz_raw", ";TPC_{V_{z}};VPD_{V{_z}}", 100, -50, 50, 100, -50, 50);
+    mh2QaEventCutTpcVzVsVpdVz_cut = new TH2F("mh2QaEventCutTpcVzVsVpdVz_cut", ";TPC_{V_{z}};VPD_{V{_z}}", 100, -50, 50, 100, -50, 50);
+    mh2QaEventCutTpcVzVsVpdVz_fin = new TH2F("mh2QaEventCutTpcVzVsVpdVz_fin", ";TPC_{V_{z}};VPD_{V{_z}}", 100, -50, 50, 100, -50, 50);
     // Event cut QA plots end
 
     mh2NElectronsVsNPartners = new TH2F("mh2NElectronsVsNPartners","nElectronsVsNPartners;nPartners;nElectrons",500,0,500,200,0,200);
@@ -71,7 +71,7 @@ StPicoNpeHists::~StPicoNpeHists()
     // when the file is closed.
 }
 //-----------------------------------------------------------------------
-void StPicoNpeHists::fill1dHist(int type, float value, float value)
+void StPicoNpeHists::fill1dHist(int type, float value)
 {
     switch(type){
         case 0:
@@ -82,9 +82,6 @@ void StPicoNpeHists::fill1dHist(int type, float value, float value)
             break;
         case 2:
             mh1QaEventCutDffVz_cut->Fill(value);
-            break;
-        case 3:
-            mh2QaEventCutTpcVzVsVpdVz_cut->Fill(value);
             break;
     }
 }
