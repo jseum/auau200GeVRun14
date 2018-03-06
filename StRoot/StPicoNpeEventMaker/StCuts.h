@@ -21,20 +21,20 @@ namespace cuts
     std::string const prescalesFilesDirectoryName = "./run14AuAu200GeVPrescales";
 
     //event
-    float const vz = 6.0;// cm.
+    float const vz = 30.0;// cm.
     float const vzVpdVz = 3.0; // 3 cm.
-    
+
     //tracking
     int const nHitsFit = 15;
     float const pt = .2;
-    
+
     // electrons
-    bool const requireHFT = true;
+    bool const requireHFT = false;
     float const nSigmaElectron = 3.;
-    
+
     // partner
     float const nSigmaPartnerElectron = 3.;
-    
+
     // tree electron pair cuts
     float const pairMass = 0.2;
     float const pairMassHigh = 0.4;
@@ -43,7 +43,7 @@ namespace cuts
     float const positionX = 200.;
     float const positionY = 200.;
     float const positionZ = 200.;
-    
+
     // histograms electron pair cuts
     float const qaNHitsFit = 20;
     float const qaNSigmaElectronMax = 3.0;
