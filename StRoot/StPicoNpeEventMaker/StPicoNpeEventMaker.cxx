@@ -20,19 +20,22 @@ ClassImp(StPicoNpeEventMaker)
 
 //-----------------------------------------------------------------------------
 StPicoNpeEventMaker::StPicoNpeEventMaker(char const* makerName, StPicoDstMaker* picoMaker, char const* fileBaseName)
-: StMaker(makerName), mPicoDstMaker(picoMaker), mPicoEvent(NULL), mPicoNpeHists(NULL),
+: StMaker(makerName), mPicoDstMa  TH1F *h1dQa_event_tpcVz_raw;
+  TH1F *h1dQa_event_tpcVz_cut;
+  TH1F *h1dQa_event_tpcVz_fin;ker(picoMaker), mPicoEvent(NULL), mPicoNpeHists(NULL),
   mOutputFile(NULL), mTree(NULL), mPicoNpeEvent(NULL)
 {
     mPicoNpeEvent = new StPicoNpeEvent();
 
     TString baseName(fileBaseName);
-    mOutputFile = new TFile(Form("%s.picoNpe.root",fileBaseName), "RECREATE");
-    mOutputFile->SetCompressionLevel(1);
-    int BufSize = (int)pow(2., 16.);
-    int Split = 1;
-    mTree = new TTree("T", "T", BufSize);
-    mTree->SetAutoSave(1000000); // autosave every 1 Mbytes
-    mTree->Branch("npeEvent", "StPicoNpeEvent", &mPicoNpeEvent, BufSize, Split);
+    // Tree and output root file. No need in this analysis
+    // mOutputFile = new TFile(Form("%s.picoNpe.root",fileBaseName), "RECREATE");
+    // mOutputFile->SetCompressionLevel(1);
+    // int BufSize = (int)pow(2., 16.);
+    // int Split = 1;
+    // mTree = new TTree("T", "T", BufSize);
+    // mTree->SetAutoSave(1000000); // autosave every 1 Mbytes
+    // mTree->Branch("npeEvent", "StPicoNpeEvent", &mPicoNpeEvent, BufSize, Split);
 
     mPicoNpeHists = new StPicoNpeHists(fileBaseName);
 }
@@ -157,7 +160,7 @@ Int_t StPicoNpeEventMaker::Make()
 
     // This should never be inside the good event block
     // because we want to save header information about all events, good or bad
-    mTree->Fill();
+    // mTree->Fill();              // Disable the tree option
     mPicoNpeEvent->clear("C");
 
     return kStOK;
