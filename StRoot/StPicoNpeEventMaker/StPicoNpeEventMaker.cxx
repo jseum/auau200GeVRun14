@@ -86,11 +86,26 @@ Int_t StPicoNpeEventMaker::Make()
     }
 
     mPicoEvent = picoDst->event();
+    float tpcVz = picoEvent->primaryVertex().z();
+    float vpdVz = picoEvent->vzVpd();
+    float vzVpdVz = fabs(tpcVz-vpdVz);
+
     mPicoNpeEvent->addPicoEvent(*mPicoEvent);
+
+    mPicoNpeHists->addEventCutQa(mPicoEvent, 0);
+
+    // cut dependent
+    if(fabs(tpcVz)<30.0) mPicoNpeHists->fill1dHist(0, tpcVz);
+    if(fabs(vzVpdVz)<3.0){
+        mPicoNpeHists->fill1dHist(1, vpdVz);
+        mPicoNpeHists->fill1dHist(2, vzVpdVz);
+        mPicoNpeHists->fill2dHist(0, tpcVz, vpdVz);        
+    }
 
     if (isGoodEvent())
     {
-        UInt_t nTracks = picoDst->numberOfTracks();
+      mPicoNpeHists->addEventCutQa(mPicoEvent, 1);
+      UInt_t nTracks = picoDst->numberOfTracks();
 
         std::vector<unsigned short> idxPicoTaggedEs;
         std::vector<unsigned short> idxPicoPartnerEs;
