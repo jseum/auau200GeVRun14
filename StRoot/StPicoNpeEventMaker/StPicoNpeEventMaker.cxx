@@ -20,9 +20,7 @@ ClassImp(StPicoNpeEventMaker)
 
 //-----------------------------------------------------------------------------
 StPicoNpeEventMaker::StPicoNpeEventMaker(char const* makerName, StPicoDstMaker* picoMaker, char const* fileBaseName)
-: StMaker(makerName), mPicoDstMa  TH1F *h1dQa_event_tpcVz_raw;
-  TH1F *h1dQa_event_tpcVz_cut;
-  TH1F *h1dQa_event_tpcVz_fin;ker(picoMaker), mPicoEvent(NULL), mPicoNpeHists(NULL),
+: StMaker(makerName), mPicoDstMaker(picoMaker), mPicoEvent(NULL), mPicoNpeHists(NULL),
   mOutputFile(NULL), mTree(NULL), mPicoNpeEvent(NULL)
 {
     mPicoNpeEvent = new StPicoNpeEvent();
